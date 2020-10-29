@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
-class Quiniela{
+class Quiniela extends Model{
     public $equipoLocal;
     public $equipoVisitante;
     public $golesLocal;

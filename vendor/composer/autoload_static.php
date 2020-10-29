@@ -34,6 +34,10 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         array (
             'Zend\\Diactoros\\' => 15,
         ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -51,6 +55,7 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
@@ -71,6 +76,8 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         ),
         'A' => 
         array (
+            'Aurora\\' => 7,
+            'Aura\\Router\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -83,6 +90,10 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         'Zend\\Diactoros\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -132,6 +143,10 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
@@ -165,6 +180,15 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
+        'Aurora\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aurora-framework/helper/src',
+            1 => __DIR__ . '/..' . '/aurora-framework/router/src',
+        ),
+        'Aura\\Router\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/router/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -173,6 +197,7 @@ class ComposerStaticInit8af9bd79a1f725916884e216f44251e0
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',

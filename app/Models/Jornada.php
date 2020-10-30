@@ -19,7 +19,7 @@ class Jornada extends Model{
         }
         //echo "Objetos Generados:" . count($this->partidos)." <br>";
         $this->setNombreEquipo(3,"Toluca","Atlas");
-        $this->setMarcadorPartido(3,3,0);
+        $this->setMarcadorPartido(3,3,3);
         
         //var_dump($partido);
     }

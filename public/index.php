@@ -55,6 +55,10 @@ $map->post('procesaEquipos', '/equipos/agregar', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'procesarFormulario'
 ]);
+$map->get('borraEquipos', '/equipos/borrar/{id}', [
+    'controller' => 'App\Controllers\EquipoController',
+    'action' => 'borrarEquipo'
+]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);

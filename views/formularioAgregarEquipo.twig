@@ -6,7 +6,13 @@
     <title>Agregar Equipo</title>
 </head>
 <body>
-    <h1>Agregar Equipo</h1>
+    <h1>Equipos</h1>
+        <ul>
+        {% for equipo in equipos  %}
+            <li>{{equipo.equipo}}</li>
+        {% endfor %}
+        </ul>
+    <h2>Agregar Equipos</h2>
     <form action="" method="post">
         <label for="equipo">Equipo a agregar</label>
         <input type="text" name="equipo" id="">

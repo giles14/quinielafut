@@ -24,22 +24,38 @@ class EquipoController extends BaseController{
             $postData = $request->getParsedBody();
             $equipoValidator = validator::key('equipo', validator::stringType()->notEmpty());
 
-            if($equipoValidator->validate($postData)){
-                $equipo = new Equipo();
-                $equipo->equipo = $postData['equipo'];
-                $equipo->save();
-                $equipos = Equipo::all();
-                echo $this->renderHTML('formularioAgregarEquipo.twig', [
-                    'successMessages' => "Equipo Agregado con éxito",
-                    'equipos' => $equipos
-                ]);
-            }else{
-                $equipos = Equipo::all();
-                echo $this->renderHTML('formularioAgregarEquipo.twig', [
-                    'errorMessages' => "Lo enviado no pasó la validación",
-                    'equipos' => $equipos
-                ]);
-            }
+            // if($equipoValidator->validate($postData)){
+            //     $equipo = new Equipo();
+            //     $equipo->equipo = $postData['equipo'];
+            //     $equipo->save();
+            //     $equipos = Equipo::all();
+            //     echo $this->renderHTML('formularioAgregarEquipo.twig', [
+            //         'successMessages' => "Equipo Agregado con éxito",
+            //         'equipos' => $equipos
+            //     ]);
+            //}
+            //else{
+                try{
+                    $equipoValidator->assert($postData);
+                    $equipo = new Equipo();
+                    $equipo->equipo = $postData['equipo'];
+                    $equipo->save();
+                    $equipos = Equipo::all();
+                    echo $this->renderHTML('formularioAgregarEquipo.twig', [
+                        'successMessages' => "Equipo Agregado con éxito",
+                        'equipos' => $equipos
+                    ]);
+                } catch (\Exception $e) {
+                    $equipos = Equipo::all();
+                    echo $this->renderHTML('formularioAgregarEquipo.twig', [
+                        'errorMessages' => $e->getMessage(),
+                        'equipos' => $equipos
+                    ]); 
+
+                }
+            
+                
+           // }
             //$equipoValidator->validate($postData); // true
 
             

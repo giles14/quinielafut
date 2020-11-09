@@ -1,22 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Equipo</title>
-</head>
-<body>
-    <h1>Equipos</h1>
-        <ul>
-        {% for equipo in equipos  %}
-            <li>{{equipo.equipo}}</li>
-        {% endfor %}
-        </ul>
-    <h2>Agregar Equipos</h2>
-    <form action="" method="post">
-        <label for="equipo">Equipo a agregar</label>
-        <input type="text" name="equipo" id="">
-        <input type="submit" value="Agregar">
-    </form>
-</body>
-</html>
+{% extends "layout.twig" %}
+{% block title  %} Quiniela Fut - Equipos {% endblock %}
+
+{% block sectionTitle %}
+    Equipo
+{% endblock %}
+{% block messages %}
+    {% if successMessages %}
+     <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> Realizado</h5>
+                    {{ successMessages }}
+     </div>
+     {% endif %}
+     {% if errorMessages %}
+     <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Los datos proporcionados no pasaron la validación intenta nuevamente con datos válidos.
+                </div>
+     {% endif %}
+{% endblock %}
+{% block mainContent %}
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Agregar</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="" role="form" method="post" >
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="nameEquipo">Equipo a Agregar</label>
+                    <input type="text" class="form-control" id="nameEquipo" name="equipo" placeholder="Equipo a Agregar">
+                  </div>
+                                  </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+              </form>
+            </div>
+    
+    <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Equipos registrados</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                                   
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Equipo</th>
+                      <th>Admin</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    {% for equipo in equipos  %}
+                    <tr>
+                      <td>{{equipo.id_equipo}}</td>
+                      <td>{{equipo.equipo}}</td>
+                      <td>
+                        <a href="/equipos/modificar/{{ equipo.id_equipo }}">Modificar</a> | <a href="/equipos/borrar/{{ equipo.id_equipo }}">Eliminar</a>
+                      </td>
+                    </tr>
+                    {% endfor %}   
+                   
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              
+    </div>
+{% endblock %}

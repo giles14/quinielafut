@@ -8,7 +8,7 @@ class IndexController extends BaseController{
                
                $name = 'Alexandro Giles';
 
-               echo $this->renderHTML('index.twig' ,[
+               echo $this->renderHTML('home.twig' ,[
                    'job' => 'jobe',
                    'name' => $name               ]);
 

@@ -9,6 +9,7 @@
         "illuminate/database": "^7.28",
         "aurora-framework/router": "^1.4",
         "aura/router": "^3.1",
-        "twig/twig": "^3.1"
+        "twig/twig": "^3.1",
+        "respect/validation": "^2.0"
     }
 }

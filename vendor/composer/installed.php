@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '64332cc811973ef9de52d94ec720d2c7d12601fe',
+    'reference' => 'ef6b9ae9299b61ae85fa1fd4ad22ee5579b64b31',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '64332cc811973ef9de52d94ec720d2c7d12601fe',
+      'reference' => 'ef6b9ae9299b61ae85fa1fd4ad22ee5579b64b31',
     ),
     'aura/router' => 
     array (
@@ -173,6 +173,24 @@
       array (
       ),
       'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+    ),
+    'respect/stringifier' => 
+    array (
+      'pretty_version' => '0.2.0',
+      'version' => '0.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e55af3c8aeaeaa2abb5fa47a58a8e9688cc23b59',
+    ),
+    'respect/validation' => 
+    array (
+      'pretty_version' => '2.0.17',
+      'version' => '2.0.17.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '314aa36e37dd3812b7d80c7bda3e83da5ee22d11',
     ),
     'symfony/console' => 
     array (

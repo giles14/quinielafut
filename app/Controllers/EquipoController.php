@@ -37,8 +37,17 @@ class EquipoController extends BaseController{
             //else{
                 try{
                     $equipoValidator->assert($postData);
+                    $files = $request->getUploadedFiles();
+                    $logo = $files['logo'];
+
+                    if($logo->getError() == UPLOAD_ERR_OK) {
+                        $fileName = $logo->getClientFilename();
+                        $logo->moveTo("uploads/$fileName");
+                    }
+                    
                     $equipo = new Equipo();
                     $equipo->equipo = $postData['equipo'];
+                    $equipo->logoImg = $fileName;
                     $equipo->save();
                     $equipos = Equipo::all();
                     echo $this->renderHTML('formularioAgregarEquipo.twig', [

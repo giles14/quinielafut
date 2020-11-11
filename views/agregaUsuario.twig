@@ -1,0 +1,83 @@
+{% extends "layout.twig" %}
+{% block title  %} Quiniela Fut - Administración {% endblock %}
+
+{% block sectionTitle %}
+    Agregar usuario
+{% endblock %}
+{% block messages %}
+    {% if successMessages %}
+     <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> Realizado</h5>
+                    {{ successMessages }}
+     </div>
+     {% endif %}
+     {% if errorMessages %}
+     <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  {{ errorMessages }}
+                  {# Los datos proporcionados no pasaron la validación intenta nuevamente con datos válidos. #}
+                </div>
+     {% endif %}
+{% endblock %}
+{% block mainContent %}
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Agregar Usuario</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="" role="form" method="post" enctype="multipart/form-data" >
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="nameEquipo">Usuario a Agregar</label>
+                    <input type="text" class="form-control" id="nameEquipo" name="username" placeholder="Equipo a Agregar">
+                    <label for="password">
+                    <input type="password" class="form-control" id="passwordUsuario" name="password" placeholder="Password">
+                  </div>
+                                  </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+              </form>
+            </div>
+    
+    <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Equipos registrados</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                                   
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Equipo</th>
+                      <th>Admin</th>
+                      <th>Escudo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    {% for equipo in equipos  %}
+                    <tr>
+                      <td>{{equipo.id_equipo}}</td>
+                      <td>{{equipo.equipo}}</td>
+                      <td>
+                        <a href="/equipos/modificar/{{ equipo.id_equipo }}">Modificar</a> | <a href="/equipos/borrar/{{ equipo.id_equipo }}">Eliminar</a>
+                      </td>
+                      <td><img src="../public/uploads/{{equipo.logoImg}}" width="30px" /></td>
+                    </tr>
+                    {% endfor %}   
+                   
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              
+    </div>
+{% endblock %}

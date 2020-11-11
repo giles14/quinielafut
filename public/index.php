@@ -59,6 +59,14 @@ $map->get('borraEquipos', '/equipos/borrar/{id}', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'borrarEquipo'
 ]);
+$map->get('adminUsuarios', '/admin/usuarios', [
+    'controller' => 'App\Controllers\usuarioController',
+    'action' => 'indexAction'
+]);
+$map->post('agregaUsuario', '/admin/usuarios', [
+    'controller' => 'App\Controllers\usuarioController',
+    'action' => 'addUser'
+]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);

@@ -60,14 +60,21 @@ $map->get('borraEquipos', '/equipos/borrar/{id}', [
     'action' => 'borrarEquipo'
 ]);
 $map->get('adminUsuarios', '/admin/usuarios', [
-    'controller' => 'App\Controllers\usuarioController',
+    'controller' => 'App\Controllers\UsuarioController',
     'action' => 'indexAction'
 ]);
 $map->post('agregaUsuario', '/admin/usuarios', [
-    'controller' => 'App\Controllers\usuarioController',
+    'controller' => 'App\Controllers\UsuarioController',
     'action' => 'addUser'
 ]);
-
+$map->get('formhLogin', '/login', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'formLoad'
+]);
+$map->post('authLogin', '/auth', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'authLogin'
+]);
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
@@ -80,7 +87,20 @@ if(!$route){
     //Controller crea una nueva instancia de lo contenido en el arreglo HandlerData->Controller que viene dado desde el Mapeo pues $route->$handler se le dió de argumento
     //el Arreglo, en éste caso cargará el Contenido de 'controller' es decir: App\Controllers\IndexController y esa es la clase que se instanciará en $controller
     $controller = new $controllerName;
-    $controller->$actionName($request);
+    $response = $controller->$actionName($request);
+    
+    foreach($response->getHeaders()as $name => $values)
+    {
+        foreach($values as $value) 
+        {
+            header(sprintf('%s: %s' , $name , $value), false);
+        }
+
+    }
+    if($response->getStatusCode){
+        http_response_code($response->getStatusCode);
+        echo $response->getBody();
+    }
     
     
     //require $route->handler;

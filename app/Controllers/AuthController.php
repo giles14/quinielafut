@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Usuario;
+use Zend\Diactoros\Response\RedirectResponse;
 
 class AuthController extends BaseController{
     
@@ -13,13 +14,18 @@ class AuthController extends BaseController{
         if($user){
             
             if(\password_verify($postData['password'], $user->password)){
-                echo 'password coincide';
+                return new RedirectResponse('/admin');
             }else{
-                echo 'El usuario existe pero el password es incorrecto';
+                echo $this->renderHTML('login.twig', [
+                    'errorMessages' => "El usuario existe pero el password es incorrecto"
+                ]);
+                
             }
 
         }else{
-            echo 'No se encontró usuario';
+            echo $this->renderHTML('login.twig', [
+                'errorMessages' => "No se encontró usuario"
+            ]);
         }
     }
 

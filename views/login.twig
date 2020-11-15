@@ -24,6 +24,24 @@
     <a href="../../index2.html"><b>QuinielaFut</a>
   </div>
   <!-- /.login-logo -->
+
+  {% block messages %}
+    {% if successMessages %}
+     <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> Realizado</h5>
+                    {{ successMessages }}
+     </div>
+     {% endif %}
+     {% if errorMessages %}
+     <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  {{ errorMessages }}
+                  {# Los datos proporcionados no pasaron la validación intenta nuevamente con datos válidos. #}
+                </div>
+     {% endif %}
+  {% endblock %}    
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Inicia sesión para continuar</p>

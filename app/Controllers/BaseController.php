@@ -15,6 +15,7 @@ class BaseController{
         $this->templateEngine->addExtension(new \Twig\Extension\DebugExtension());
     }
     public function renderHTML($fileName, $data=[]){
-        return $this->templateEngine->render($fileName, $data);
+        //return $this->templateEngine->render($fileName, $data);
+        return new HtmlResponse($this->templateEngine->render($fileName, $data));
     }
 }

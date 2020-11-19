@@ -13,12 +13,12 @@ class usuarioController extends BaseController {
         $usuario->password = $password;
         $usuario->save();
 
-        echo $this->renderHTML('agregaUsuario.twig', [
+        return $this->renderHTML('agregaUsuario.twig', [
             'successMessages' => "Equipo Agregado con éxito"
         ]);
     }
     public function indexAction(){
-        echo $this->renderHTML('agregaUsuario.twig', [
+        return $this->renderHTML('agregaUsuario.twig', [
             'successMessages' => " "
         ]);
     }

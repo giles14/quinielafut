@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+{% block adminMenu %}
+<li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Admin Panel</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li><a href="#" class="dropdown-item">Agregar Equipos </a></li>
+              <li><a href="#" class="dropdown-item">Agregar Jornadas</a></li>
+              
+              <li class="dropdown-divider"></li>
+              <li><a href="#" class="dropdown-item">Agregar Jornadas</a></li>
+              <li><a href="/logout" class="dropdown-item">Logout</a></li>
+
+              <!-- Level two dropdown-->
+              <!-- End Level two -->
+            </ul>
+          </li>
+{% endblock %}

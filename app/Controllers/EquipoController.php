@@ -14,7 +14,7 @@ class EquipoController extends BaseController{
     } 
     public function mostrarFormulario(){
         $equipos = Equipo::all();
-                echo $this->renderHTML('formularioAgregarEquipo.twig', [
+                return $this->renderHTML('formularioAgregarEquipo.twig', [
                     'equipos' => $equipos
                 ]);
     }
@@ -50,13 +50,13 @@ class EquipoController extends BaseController{
                     $equipo->logoImg = $fileName;
                     $equipo->save();
                     $equipos = Equipo::all();
-                    echo $this->renderHTML('formularioAgregarEquipo.twig', [
+                    return $this->renderHTML('formularioAgregarEquipo.twig', [
                         'successMessages' => "Equipo Agregado con éxito",
                         'equipos' => $equipos
                     ]);
                 } catch (\Exception $e) {
                     $equipos = Equipo::all();
-                    echo $this->renderHTML('formularioAgregarEquipo.twig', [
+                    return $this->renderHTML('formularioAgregarEquipo.twig', [
                         'errorMessages' => $e->getMessage(),
                         'equipos' => $equipos
                     ]); 

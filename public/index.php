@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 
+session_start();
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
 //use App\Controllers\IndexController;
@@ -71,10 +73,20 @@ $map->get('formhLogin', '/login', [
     'controller' => 'App\Controllers\AuthController',
     'action' => 'formLoad'
 ]);
+$map->get('formhLogout', '/logout', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'authLogout'
+]);
 $map->post('authLogin', '/auth', [
     'controller' => 'App\Controllers\AuthController',
     'action' => 'authLogin'
 ]);
+$map->get('admin', '/admin', [
+    'controller' => 'App\Controllers\AdminController',
+    'action' => 'indexAction',
+    'auth' => true
+]);
+
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
@@ -84,11 +96,19 @@ if(!$route){
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $actionName = $handlerData['action'];
+    $authenticationNeeded = $handlerData['auth'] ?? false;
+
+    $sessionUserId = $_SESSION['userId'] ?? null;
+    if ($authenticationNeeded && !$sessionUserId){
+        echo 'protegido, necesitas logearte';
+        die;
+    }
+
     //Controller crea una nueva instancia de lo contenido en el arreglo HandlerData->Controller que viene dado desde el Mapeo pues $route->$handler se le dió de argumento
     //el Arreglo, en éste caso cargará el Contenido de 'controller' es decir: App\Controllers\IndexController y esa es la clase que se instanciará en $controller
     $controller = new $controllerName;
     $response = $controller->$actionName($request);
-    
+   
     foreach($response->getHeaders()as $name => $values)
     {
         foreach($values as $value) 
@@ -97,12 +117,8 @@ if(!$route){
         }
 
     }
-    if($response->getStatusCode){
-        http_response_code($response->getStatusCode);
-        echo $response->getBody();
-    }
-    
-    
+        http_response_code($response->getStatusCode());
+        echo $response->getBody();    
     //require $route->handler;
     
 }

@@ -10,6 +10,10 @@ session_start();
 
 // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 // $dotenv->load();
+echo $_ENV['DB_HOST'];
+echo $_ENV['DB_NAME'];
+echo $_ENV['DB_USERNAME'];
+echo $_ENV['DB_PASSWORD'];
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;

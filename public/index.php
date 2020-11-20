@@ -8,8 +8,8 @@ require_once '../vendor/autoload.php';
 
 session_start();
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+// $dotenv->load();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
@@ -88,6 +88,10 @@ $map->get('admin', '/admin', [
     'controller' => 'App\Controllers\AdminController',
     'action' => 'indexAction',
     'auth' => true
+]);
+$map->get('prueba', '/prueba/{id}' , [
+    'controller' => 'App\Controllers\PruebaController',
+    'action' => 'getVar',
 ]);
 
 $matcher = $routerContainer->getMatcher();

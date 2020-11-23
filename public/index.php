@@ -8,12 +8,10 @@ require_once '../vendor/autoload.php';
 
 session_start();
 
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-// $dotenv->load();
-echo "host " . $_ENV['DB_HOST'];
-echo "DBNAME " . $_ENV['DB_NAME'];
-echo "DBUSERNAME " . $_ENV['DB_USERNAME'];
-echo "DBPASSWORD " . $_ENV['DB_PASSWORD'];
+if (file_exists('../.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
@@ -93,7 +91,7 @@ $map->get('admin', '/admin', [
     'action' => 'indexAction',
     'auth' => true
 ]);
-$map->get('prueba', '/prueba/{id}' , [
+$map->get('prueba', '/prueba/{ides}/{mama}' , [
     'controller' => 'App\Controllers\PruebaController',
     'action' => 'getVar',
 ]);
@@ -101,9 +99,16 @@ $map->get('prueba', '/prueba/{id}' , [
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
+
 if(!$route){
     echo 'No se encontró Ruta';
 }else{
+    
+    //agregamos (si hay) los valores de la ruta
+    foreach ($route->attributes as $key => $val) {
+        $request = $request->withAttribute($key, $val);
+    }
+
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $actionName = $handlerData['action'];

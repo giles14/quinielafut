@@ -18,6 +18,17 @@ class EquipoController extends BaseController{
                     'equipos' => $equipos
                 ]);
     }
+
+    public function borrarEquipo($request){
+        $idEquipo = $request->getAttribute('id');
+        Equipo::destroy($idEquipo);
+        $equipos = Equipo::all();
+        return $this->renderHTML('formularioAgregarEquipo.twig', [
+            'successMessages' => 'Equipo Borrado con éxito',
+            'equipos' => $equipos
+        ]);
+        
+    }
     public function procesarFormulario($request){
         
         if($request->getMethod()=='POST'){
@@ -72,18 +83,6 @@ class EquipoController extends BaseController{
             
         }
 
-    }
-    public function borrarEquipo($request){
-        $postData = $request->getParsedBody();
-        // $equipo = Equipo::find(1);
-        // $equipo->delete();
-        //echo $request->getAttribute('id');
-        echo '<pre>';
-         var_dump($postData);
-        echo '</pre>';
-        //$id = $request->getAttribute('id');
-        //echo "Equipo con: $id";
-    }
-    
+    }   
 
 }

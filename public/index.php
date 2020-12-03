@@ -58,6 +58,10 @@ $map->get('agregaEquipos', '/equipos/agregar', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'mostrarFormulario'
 ]);
+$map->get('agregaEquipos', '/equipos/agregar', [
+    'controller' => 'App\Controllers\EquipoController',
+    'action' => 'mostrarFormularioFiltrado'
+]);
 $map->post('procesaEquipos', '/equipos/agregar', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'procesarFormulario'
@@ -65,6 +69,14 @@ $map->post('procesaEquipos', '/equipos/agregar', [
 $map->get('borraEquipos', '/equipos/borrar/{id}', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'borrarEquipo'
+]);
+$map->get('modificaEquipo', '/equipos/modificar/{id}', [
+    'controller' => 'App\Controllers\EquipoController',
+    'action' => 'modificarEquipo'
+]);
+$map->post('procesaModificarEquipo', '/equipos/modificar/{id}', [
+    'controller' => 'App\Controllers\EquipoController',
+    'action' => 'procesaModificarEquipo'
 ]);
 $map->get('adminUsuarios', '/admin/usuarios', [
     'controller' => 'App\Controllers\UsuarioController',

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Equipo;
+use Zend\Diactoros\Response\RedirectResponse;
 use Respect\Validation\Validator as validator;
 
 class EquipoController extends BaseController{
@@ -14,10 +15,22 @@ class EquipoController extends BaseController{
     } 
     public function mostrarFormulario(){
         $equipos = Equipo::all();
-                return $this->renderHTML('formularioAgregarEquipo.twig', [
-                    'equipos' => $equipos
-                ]);
+        return $this->renderHTML('formularioAgregarEquipo.twig', [
+            'equipos' => $equipos
+         ]);
     }
+    public function mostrarFormularioFiltrado(){
+        $limit = 0;
+        $equipos = Equipo::all();
+        $filterFunction = function ($equipos) use ($limit){
+            return $equipos['campeonatos'] >=$limit;
+        };
+        $equipos = array_filter($equipos->toArray(), $filterFunction);
+        return $this->renderHTML('formularioAgregarEquipo.twig', [
+            'equipos' => $equipos
+         ]);
+    }
+
 
     public function borrarEquipo($request){
         $idEquipo = $request->getAttribute('id');
@@ -28,6 +41,31 @@ class EquipoController extends BaseController{
             'equipos' => $equipos
         ]);
         
+    }
+    public function modificarEquipo($request){
+        $idEquipo = $request->getAttribute('id');
+        $equipos = Equipo::firstWhere('id_equipo', $idEquipo);
+        return $this->renderHTML('formularioModificarEquipo.twig', [
+            'successMessages' => '',
+            'equipos' => $equipos
+        ]);
+        
+    }
+    public function procesaModificarEquipo($request){
+        $idEquipo = $request->getAttribute('id');
+        if($request->getMethod()=='POST'){
+            $postData = $request->getParsedBody();
+            $equipo = Equipo::firstWhere('id_equipo', $idEquipo);
+            $equipo->equipo = $postData['equipo'];
+            $equipo->campeonatos = $postData['campeonatos'];
+            $equipo->save();
+            $equipos = Equipo::all();
+            return new RedirectResponse('/equipos/agregar');
+            // return $this->renderHTML('formularioAgregarEquipo.twig', [
+            //     'successMessages' => 'Equipo Modificado',
+            //     'equipos' => $equipos
+            // ]);
+        }
     }
     public function procesarFormulario($request){
         

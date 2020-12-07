@@ -58,7 +58,7 @@ $map->get('agregaEquipos', '/equipos/agregar', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'mostrarFormulario'
 ]);
-$map->get('agregaEquipos', '/equipos/agregar', [
+$map->get('muestraFiltroEquipos', '/equipos/filtrado', [
     'controller' => 'App\Controllers\EquipoController',
     'action' => 'mostrarFormularioFiltrado'
 ]);

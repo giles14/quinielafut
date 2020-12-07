@@ -2,13 +2,14 @@
 namespace App\Controllers;
 use App\Models\Usuario;
 use Zend\Diactoros\Response\RedirectResponse;
+use Zend\Diactoros\ServerRequest;
 
 class AuthController extends BaseController{
     
     public function formLoad(){
         return $this->renderHTML('login.twig');
     }
-    public function authLogin($request){
+    public function authLogin(ServerRequest $request){
         $postData = $request->getParsedBody();
         $user = Usuario::where('username', $postData['username'])->first();
         if($user){

@@ -69,7 +69,8 @@
                       <td>
                         <a href="/equipos/modificar/{{ equipo.id_equipo }}">Modificar</a> | <a href="/equipos/borrar/{{ equipo.id_equipo }}">Eliminar</a>
                       </td>
-                      <td><img src="../public/uploads/{{equipo.logoImg}}" width="30px" /></td>
+                      <td><img src="{{equipo.getImage(equipo.equipo) }}" width="30px" /></td>
+                      
                     </tr>
                     {% endfor %}   
                    

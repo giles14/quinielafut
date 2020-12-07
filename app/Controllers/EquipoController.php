@@ -20,9 +20,9 @@ class EquipoController extends BaseController{
          ]);
     }
     public function mostrarFormularioFiltrado(){
-        $limit = 0;
+        $limit = 10;
         $equipos = Equipo::all();
-        $filterFunction = function ($equipos) use ($limit){
+        $filterFunction = function (array $equipos) use ($limit){
             return $equipos['campeonatos'] >=$limit;
         };
         $equipos = array_filter($equipos->toArray(), $filterFunction);
